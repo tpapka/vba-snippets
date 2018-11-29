@@ -517,3 +517,31 @@ Set ofile = fso.GetFile(Environ("LOCALAPPDATA") & "\" & "12375458888788" & ".txt
 
 ofile.Attributes = Hidden
 End Sub
+
+
+
+''--- Collecting Values From A Column and adding it to an Array
+''--- Searching for all of them in every cell that hold any value (UsedRange)
+Sub tt()
+
+Dim Domains()
+Dim sh As Range
+
+LastRow = Sheets("Sheet1").Cells(Rows.Count, "A").End(xlUp).Row
+Count = 0
+
+Set sh = Sheets("user_profiles").UsedRange
+
+For r = 1 To LastRow
+    ReDim Preserve Domains(0 To Count)
+    Domains(Count) = Sheets("Sheet1").Range("A" & r).Value
+    Count = Count + 1
+Next
+
+For Each c In sh.Cells
+    If IsInArray(c.Value, Domains) Then
+        c.Interior.ColorIndex = 6
+    End If
+Next
+
+End Sub
