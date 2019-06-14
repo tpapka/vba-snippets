@@ -1,3 +1,30 @@
+''--- IMPORTING CLASSES/MODULE FILES
+Private VBComp As VBComponent
+
+Sub ImportOD()
+    ThisWorkbook.VBProject.VBComponents.Import "G:\z-BPA\ImportClass\OpenThisClass.cls"
+    OpenOD
+    Set VBComp = ThisWorkbook.VBProject.VBComponents("OpenThisClass")
+    ThisWorkbook.VBProject.VBComponents.Remove VBComp
+End Sub
+
+Sub OpenOD()
+    Dim o As New OpenOnDemand
+    o.OpenOnDemand
+    Set o = Nothing
+End Sub
+
+''- OpenThisClass Class
+Private OD As Variant
+Private Path As String
+
+Sub OpenOnDemand()
+    Path = "C:\Program Files\IBM\OnDemand Clients\V10.1\bin\arsgui.exe"
+    OD = Shell(Path, vbNormalFocus)
+End Sub
+
+
+
 ''--- HOW TO GET LAST COLUMNs NUMBER AND NAME ---
 Sub ColNumberName()
 LastColumn = Cells(1, Columns.Count).End(xlToLeft).Column    'this will get you column number
