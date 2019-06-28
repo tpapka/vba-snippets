@@ -572,3 +572,24 @@ For Each c In sh.Cells
 Next
 
 End Sub
+
+
+
+''--- CLOSING WEBSITE POPUPS
+Shell "wscript.exe ""G:\z-BPA\ImportClass\ClosePopUp.vbs"""
+'- ClosePopUp.vbs
+set wshShell = CreateObject("wscript.shell")
+
+Do
+    ret = wshShell.AppActivate("Message from webpage")
+Loop Until ret = True
+
+WScript.Sleep 500
+
+ret = wshShell.AppActivate("Message from webpage")
+If ret = True Then
+    ret = wshshell.AppActivate("Message from webpage")
+    WScript.Sleep 10
+    wshShell.SendKeys "{enter}"
+End If
+
