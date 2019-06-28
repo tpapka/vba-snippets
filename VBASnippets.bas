@@ -1,4 +1,5 @@
 ''--- IMPORTING CLASSES/MODULE FILES
+'' Requires Microsoft Visual Basic for Applications Extensibility 5.3
 Private VBComp As VBComponent
 
 Sub ImportOD()
