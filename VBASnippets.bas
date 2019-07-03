@@ -25,7 +25,28 @@ Sub OpenOnDemand()
 End Sub
 
 
+''--- RUNNING VBS SCRIPT FROM EXCEL
+Shell "wscript.exe ""C:\test\VBS\ClosePopUp.vbs"""
+Shell "taskkill /f /im wscript.exe", vbHide
+  
+        '-- 'Close PopUp.vbs
+set wshShell = CreateObject("wscript.shell")
 
+Do
+    ret = wshShell.AppActivate("Message from webpage")
+	WScript.Sleep 500
+Loop Until ret = True
+
+ret = wshShell.AppActivate("Message from webpage")
+If ret = True Then
+    ret = wshshell.AppActivate("Message from webpage")
+    WScript.Sleep 10
+    wshShell.SendKeys "{enter}"
+End If        
+            ''-- End of Close PopUp.vbs
+        
+        
+        
 ''--- HOW TO GET LAST COLUMNs NUMBER AND NAME ---
 Sub ColNumberName()
 LastColumn = Cells(1, Columns.Count).End(xlToLeft).Column    'this will get you column number
